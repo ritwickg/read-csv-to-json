@@ -1,0 +1,1 @@
+[{"loc_scope": "Global", "table_scope": "cusips", "type": "Restrict", "paramas": {"Context": "product_Type", "RefreshCondition": "product_Type in (1,2,3,4,5,7,8,9,10)"}}]
