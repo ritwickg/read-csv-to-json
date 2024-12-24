@@ -1,14 +1,5 @@
 import json
 import csv
-from enum import Enum
-
-class ConditionType(Enum):
-    EQUALS = 1
-    IN_QUERY = 2
-    GREATER_EQUALS = 3
-    LESS_EQUALS = 4
-    GREATER = 5
-    LESS = 6
 
 def create_json(location_scope, table_scope, type, context, refresh_condition, readFromFile=False, column_name=None,  conditionType=None):
     dynamic_json = []
