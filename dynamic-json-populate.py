@@ -1,11 +1,13 @@
 import json
 import csv
 
-def create_json(location_scope, table_scope, type, context, refresh_condition, read_from_file=False, column_name=None,  condition_type=None):
+def create_json(location_scope, table_scope, type, context, 
+                refresh_condition, output_file_path, read_from_file=False, column_name=None,  condition_type=None,
+                input_file_path=None):
     dynamic_json = []
     condition_list = [];
-    if(read_from_file and column_name != None and condition_type != None):
-        with open("refresh-condition.csv", "r") as refreshConditionSource:
+    if(read_from_file and column_name != None and condition_type != None and input_file_path != None):
+        with open(input_file_path, "r") as refreshConditionSource:
             data = csv.reader(refreshConditionSource,delimiter=',')
             for row in data:
                 for current_element in row:
@@ -39,8 +41,8 @@ def create_json(location_scope, table_scope, type, context, refresh_condition, r
             }
         })
         json_object = json.dumps(dynamic_json)
-    with open("dynamic_json.json", "w") as outfile:
+    with open(output_file_path, "w") as outfile:
         outfile.write(json_object)
 
-# create_json("Global", "cusips", "Restrict", "product_Type", "product_Type == 'Bond'")
-create_json("Global", "cusips", "Restrict", "product_Type", None,True, "product_Type", 2)
+# create_json("Global", "cusips", "Restrict","Random", "product_Type","dynamic_json.json", "product_Type == 'Bond'")
+create_json("Global", "cusips", "Restrict","Random", None, "dynamic_json.json" ,True, "product_Type", 2,"refresh-condition.csv")
