@@ -1,10 +1,10 @@
 import json
 import csv
 
-def create_json(location_scope, table_scope, type, context, refresh_condition, readFromFile=False, column_name=None,  condition_type=None):
+def create_json(location_scope, table_scope, type, context, refresh_condition, read_from_file=False, column_name=None,  condition_type=None):
     dynamic_json = []
     condition_list = [];
-    if(readFromFile and column_name != None and condition_type != None):
+    if(read_from_file and column_name != None and condition_type != None):
         with open("refresh-condition.csv", "r") as refreshConditionSource:
             data = csv.reader(refreshConditionSource,delimiter=',')
             for row in data:
