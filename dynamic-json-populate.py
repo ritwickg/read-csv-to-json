@@ -7,7 +7,7 @@ def create_json(location_scope, table_scope, type,
                 input_file_path=None):
 
     
-    context = str(''.join(random.choices(string.ascii_letters + string.digits, k=16))).lower()
+    context = ''.join(random.choices(string.ascii_lowercase,k=16) +  random.choices(string.digits, k=8) + random.choices(string.ascii_lowercase,k=8))
     dynamic_json = []
     condition_list = [];
     if(read_from_file and column_name != None and input_file_path != None):
