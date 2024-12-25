@@ -1,9 +1,13 @@
 import json
 import csv
+import random, string
 
-def create_json(location_scope, table_scope, type, context, 
+def create_json(location_scope, table_scope, type, 
                 refresh_condition, output_file_path, read_from_file=False, column_name=None,
                 input_file_path=None):
+
+    
+    context = str(''.join(random.choices(string.ascii_letters + string.digits, k=16))).lower()
     dynamic_json = []
     condition_list = [];
     if(read_from_file and column_name != None and input_file_path != None):
@@ -38,5 +42,5 @@ def create_json(location_scope, table_scope, type, context,
     with open(output_file_path, "w") as outfile:
         outfile.write(json_object)
 
-# create_json("Global", "cusips", "Restrict","Random", "product_Type","dynamic_json.json", "product_Type == 'Bond'")
-create_json("Global", "cusips", "Restrict","Random", None, "dynamic_json.json" ,True, "product_Type", "refresh-condition.csv")
+create_json("Global", "cusips", "Restrict", "product_Type == val", "dynamic_json.json" )
+# create_json("Global", "cusips", "Restrict", None, "dynamic_json.json" ,True, "product_Type", "refresh-condition.csv")
